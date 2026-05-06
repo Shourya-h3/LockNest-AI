@@ -28,10 +28,11 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    // Allow localhost and local network IPs
+    // Allow localhost, local network IPs, and Vercel domains
     if (origin.startsWith('http://localhost') || 
         origin.startsWith('http://127.0.0.1') || 
-        origin.includes('192.168.')) {
+        origin.includes('192.168.') ||
+        origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -65,3 +66,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
+
+export default app;
