@@ -1,13 +1,19 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { FiBell, FiLogOut, FiUser, FiSearch } from 'react-icons/fi';
+import { FiBell, FiLogOut, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
 
-const Navbar = () => {
+const Navbar = ({ toggleSidebar }) => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <header className="h-20 bg-white/[0.02] backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-8 sticky top-0 z-30">
-      <div className="flex items-center gap-8">
+    <header className="h-20 bg-white/[0.02] backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-4 md:px-8 sticky top-0 z-30">
+      <div className="flex items-center gap-4 md:gap-8">
+        <button 
+          onClick={toggleSidebar}
+          className="lg:hidden p-3 bg-white/5 rounded-xl text-primary hover:bg-white/10 transition-all"
+        >
+          <FiMenu className="text-xl" />
+        </button>
         <div>
           <h1 className="text-xl font-bold text-white tracking-tight">Welcome, {user?.name?.split(' ')[0]}</h1>
           <p className="text-xs text-text-dim font-medium uppercase tracking-widest">Digital Vault Secure</p>

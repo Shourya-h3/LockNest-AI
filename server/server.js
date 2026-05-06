@@ -25,16 +25,23 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
+    // 1. Allow same-origin (no origin header)
     if (!origin) return callback(null, true);
     
-    // Allow localhost, local network IPs, and Vercel domains
-    if (origin.startsWith('http://localhost') || 
-        origin.startsWith('http://127.0.0.1') || 
-        origin.includes('192.168.') ||
-        origin.endsWith('.vercel.app')) {
+    // 2. Allow development and local network
+    const isLocal = origin.startsWith('http://localhost') || 
+                   origin.startsWith('http://127.0.0.1') || 
+                   origin.includes('192.168.') ||
+                   origin.includes('172.16.'); // Added for common phone hotspot IPs
+    
+    // 3. Allow any Vercel domain
+    const isVercel = origin.endsWith('.vercel.app');
+
+    if (isLocal || isVercel) {
       callback(null, true);
     } else {
+      // For production, if something else fails, we can log it
+      console.log('CORS Blocked Origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },

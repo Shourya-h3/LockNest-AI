@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { FiGrid, FiLock, FiShield, FiSettings, FiActivity } from 'react-icons/fi';
-import { motion } from 'framer-motion';
+import { FiGrid, FiLock, FiShield, FiSettings, FiActivity, FiX } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const menuItems = [
     { name: 'Dashboard', icon: FiGrid, path: '/dashboard' },
     { name: 'Vault Assets', icon: FiLock, path: '/vault' },
@@ -11,15 +11,20 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-72 bg-white/[0.01] backdrop-blur-3xl h-full flex flex-col border-r border-white/5 relative z-40">
-      <div className="p-10 flex items-center gap-4 mb-8">
-        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-          <FiShield className="text-background text-2xl" />
+    <div className={`fixed inset-y-0 left-0 z-50 w-72 bg-background/95 backdrop-blur-3xl h-full flex flex-col border-r border-white/5 transition-transform duration-500 lg:relative lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className="p-10 flex items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+            <FiShield className="text-background text-2xl" />
+          </div>
+          <div>
+            <h2 className="text-xl font-black text-white tracking-tighter uppercase leading-none">LockNest</h2>
+            <span className="text-[9px] text-primary font-bold tracking-[0.3em] uppercase">Sovereign</span>
+          </div>
         </div>
-        <div>
-          <h2 className="text-xl font-black text-white tracking-tighter uppercase leading-none">LockNest</h2>
-          <span className="text-[9px] text-primary font-bold tracking-[0.3em] uppercase">Sovereign</span>
-        </div>
+        <button onClick={() => setIsOpen(false)} className="lg:hidden text-white/50 hover:text-white transition-colors">
+          <FiX className="text-2xl" />
+        </button>
       </div>
 
       <nav className="flex-1 px-6 space-y-3">
@@ -27,6 +32,7 @@ const Sidebar = () => {
           <NavLink
             key={item.name}
             to={item.path}
+            onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-500 group relative ${
                 isActive 
