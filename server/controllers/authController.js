@@ -130,7 +130,8 @@ export const forgotPassword = async (req, res) => {
     await user.save();
 
     // Since we don't have a mail server, we'll log the reset URL and send it in response for dev purposes
-    const resetUrl = `http://localhost:5555/resetpassword/${resetToken}`;
+    const origin = req.get('origin') || `http://${req.get('host').replace(':5000', ':5555')}`;
+    const resetUrl = `${origin}/resetpassword/${resetToken}`;
     
     console.log(`\n--- PASSWORD RESET REQUEST ---`);
     console.log(`User: ${email}`);
