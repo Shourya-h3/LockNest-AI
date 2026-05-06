@@ -71,6 +71,17 @@ const Vault = () => {
     }
   };
 
+  const handleGeneratePassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    const length = 16;
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setFormData({ ...formData, password });
+    toast.success('High-entropy key generated');
+  };
+
   const filteredPasswords = passwords.filter(p => 
     p.website.toLowerCase().includes(search.toLowerCase()) || 
     p.username.toLowerCase().includes(search.toLowerCase())
@@ -241,12 +252,21 @@ const Vault = () => {
                         </span>
                       )}
                     </div>
-                    <input 
-                      type="password" required
-                      value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})}
-                      className="w-full bg-white/[0.03] border border-white/5 text-white rounded-2xl py-4 px-6 focus:outline-none focus:border-primary/50 transition-all font-mono text-sm"
-                      placeholder="••••••••"
-                    />
+                    <div className="relative group/input">
+                      <input 
+                        type="text" required
+                        value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})}
+                        className="w-full bg-white/[0.03] border border-white/5 text-white rounded-2xl py-4 pl-6 pr-24 focus:outline-none focus:border-primary/50 transition-all font-mono text-sm"
+                        placeholder="••••••••"
+                      />
+                      <button 
+                        type="button"
+                        onClick={handleGeneratePassword}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary/10 hover:bg-primary/20 text-primary text-[9px] font-black uppercase px-3 py-2 rounded-xl transition-all border border-primary/20"
+                      >
+                        Generate
+                      </button>
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-text-dim uppercase tracking-widest ml-1">Classification</label>

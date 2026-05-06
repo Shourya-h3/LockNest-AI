@@ -6,6 +6,7 @@ const Sidebar = () => {
   const menuItems = [
     { name: 'Dashboard', icon: FiGrid, path: '/dashboard' },
     { name: 'Vault Assets', icon: FiLock, path: '/vault' },
+    { name: 'Security Audit', icon: FiShield, path: '/security-audit' },
     { name: 'Node Config', icon: FiActivity, path: '/student-registration' },
   ];
 

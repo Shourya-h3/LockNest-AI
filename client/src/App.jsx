@@ -12,6 +12,7 @@ import Vault from './pages/Vault';
 import StudentRegistration from './pages/StudentRegistration';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import SecurityAudit from './pages/SecurityAudit';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -33,6 +34,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/vault" element={<ProtectedRoute><Vault /></ProtectedRoute>} />
+          <Route path="/security-audit" element={<ProtectedRoute><SecurityAudit /></ProtectedRoute>} />
           <Route path="/student-registration" element={<ProtectedRoute><StudentRegistration /></ProtectedRoute>} />
         </Route>
       </Routes>
