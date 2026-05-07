@@ -23,7 +23,7 @@ const ResetPassword = () => {
     setIsLoading(true);
     try {
       await api.put(`/auth/resetpassword/${token}`, { password });
-      toast.success('Access Key updated successfully');
+      toast.success('Password updated successfully');
       navigate('/login');
     } catch (error) {
       toast.error(error.response?.data?.message || 'Reset failed');
@@ -46,12 +46,12 @@ const ResetPassword = () => {
             <FiShield className="text-background text-4xl" />
           </div>
           <h2 className="text-4xl font-semibold text-white mb-4 tracking-tight uppercase">Reset Access</h2>
-          <p className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Establish New Master Key</p>
+          <p className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Establish New Password</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-3">
-            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">New Master Key</label>
+            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">New Password</label>
             <div className="relative group">
               <FiLock className="absolute left-5 top-1/2 -translate-y-1/2 text-primary group-focus-within:text-accent transition-colors" />
               <input 
@@ -73,7 +73,7 @@ const ResetPassword = () => {
           </div>
 
           <div className="space-y-3">
-            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">Confirm New Key</label>
+            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">Confirm Password</label>
             <div className="relative group">
               <FiLock className="absolute left-5 top-1/2 -translate-y-1/2 text-primary group-focus-within:text-accent transition-colors" />
               <input 
@@ -92,7 +92,7 @@ const ResetPassword = () => {
             disabled={isLoading}
             className="w-full bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-background font-black py-5 rounded-2xl transition-all active:scale-[0.98] shadow-2xl shadow-primary/20 text-xl uppercase tracking-tighter mt-6 disabled:opacity-50"
           >
-            {isLoading ? 'Resetting...' : 'Update Master Key'}
+            {isLoading ? 'Resetting...' : 'Update Password'}
           </button>
         </form>
       </motion.div>

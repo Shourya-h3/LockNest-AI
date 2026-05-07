@@ -83,7 +83,7 @@ const Register = () => {
           </div>
 
           <div className="space-y-3">
-            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">Master Key</label>
+            <label className="text-xs font-black text-primary/60 ml-2 uppercase tracking-widest">Password</label>
             <div className="relative group">
               <FiLock className="absolute left-5 top-1/2 -translate-y-1/2 text-primary group-focus-within:text-accent transition-colors" />
               <input 

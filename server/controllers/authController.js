@@ -16,7 +16,7 @@ export const registerUser = async (req, res) => {
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: 'Security protocol requires at least 6 characters for your Access Key.' });
+      return res.status(400).json({ message: 'Security protocol requires at least 6 characters for your Password.' });
     }
 
     const user = await User.create({
@@ -177,7 +177,7 @@ export const resetPassword = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: 'Access Key updated successfully'
+      message: 'Password updated successfully'
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -7,7 +7,7 @@
 ## ✨ Features
 
 - **Emerald Sovereign UI**: A stunning, high-performance interface with 3D grid layouts and fluid animations.
-- **Vault Management**: Securely store, organize, and manage your master keys and credentials.
+- **Vault Management**: Securely store, organize, and manage your passwords and credentials.
 - **AI-Powered Analytics**: Real-time insights into your security posture and password health.
 - **Multi-Device Sync**: Access your vault from any device on your local network.
 - **Student Registration**: Dedicated portal for academic integration.

@@ -68,7 +68,7 @@ const Login = () => {
 
           <div className="space-y-3">
             <div className="flex justify-between ml-2">
-              <label className="text-xs font-black text-primary/60 uppercase tracking-widest">Access Key</label>
+              <label className="text-xs font-black text-primary/60 uppercase tracking-widest">Password</label>
               <Link to="/forgotpassword" className="text-xs text-secondary hover:text-primary transition-colors font-bold uppercase">Emergency Recovery</Link>
             </div>
             <div className="relative group">
